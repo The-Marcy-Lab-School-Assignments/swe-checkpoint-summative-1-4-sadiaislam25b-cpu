@@ -20,6 +20,13 @@
 // On failure, data should be null and error should be a message string.
 export const getAllRecipes = async () => {
   // TODO 1
+  try {
+    const response = await fetch('https://dummyjson.com/recipes?limit=30')
+    const data = await response.json()
+    return { data: data.recipes, error: null }
+  } catch (error) {
+    return { data: null, error: 'Failed to fetch recipes.' }
+  }
 };
 
 // searchRecipes(query) — fetches recipes matching the search query.
@@ -27,4 +34,11 @@ export const getAllRecipes = async () => {
 // On failure, data should be null and error should be a message string.
 export const searchRecipes = async (query) => {
   // TODO 2
+  try {
+    const response = await fetch(`https://dummyjson.com/recipes/search?q=${query}`);
+    const data = await response.json();
+    return { data: data.recipes, error: null }
+  } catch (error) {
+    return { data: null, error: 'Failed to search recipes.' }
+  }
 };
