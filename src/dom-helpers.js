@@ -23,6 +23,26 @@
 // document.createElement, element.setAttribute, element.append, array iteration.
 export const renderRecipes = (recipes) => {
   // TODO 1
+  const recipesList = document.querySelector('#recipes-list');
+  const recipeCount = document.querySelector("#recipe-count");
+
+  
+   recipeCount.textContent = `${recipes.length} Recipes`;
+   recipes.forEach(recipe => {
+     const li = document.createElement('li');
+     const img = document.createElement('img');
+     img.setAttribute('src', recipe.image);
+     img.setAttribute('alt', recipe.name);
+     const h3 = document.createElement('h3');
+     h3.textContent = recipe.name;
+     const p1 = document.createElement('p');
+     p1.textContent = `${recipe.cuisine} · ${recipe.difficulty}`;
+     const p2 = document.createElement('p');
+     p2.textContent = `★ ${recipe.rating}`;
+     
+     li.append(img, h3, p1, p2);
+     recipesList.append(li);
+   });      
 };
 
 // renderError(message) — shows an error message on the page when something
@@ -35,4 +55,11 @@ export const renderRecipes = (recipes) => {
 // element.classList.add, element.classList.remove.
 export const renderError = (message) => {
   // TODO 2
+  const errorMessageElement = document.querySelector('#error-message');
+  if (message) {
+    errorMessageElement.textContent = message;
+    errorMessageElement.classList.remove('hidden');
+  } else {
+    errorMessageElement.classList.add('hidden');
+  }
 };

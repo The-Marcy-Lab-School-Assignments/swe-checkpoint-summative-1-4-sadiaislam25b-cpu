@@ -8,34 +8,44 @@ class RecipeCollection {
   // constructor(name) — gives this collection a name.
   constructor(name) {
     // TODO 1
+    this.name = name
   }
 
   // addRecipe(recipe) — adds a recipe object to this collection.
   addRecipe(recipe) {
     // TODO 2
+    this.#recipes.push(recipe);
   }
 
   // getAll() — returns a copy of all recipes so external code cannot
   // directly modify the private #recipes field.
   getAll() {
     // TODO 3
+    return [...this.#recipes]
   }
 
   // getNames() — returns an array of just the recipe name strings.
   getNames() {
     // TODO 4
+     this.#recipes.map(recipe => recipe.name);
   }
 
   // getAverageRating() — returns the average rating of all recipes,
   // rounded to 1 decimal place. Returns 0 if the collection is empty.
   getAverageRating() {
     // TODO 5
+    if (this.#recipes.length === 0) {
+      return 0;
+    }
+    const total = this.#recipes.reduce((sum, recipe) => sum + recipe.rating, 0)
+    return Number((total / this.#recipes.length).toFixed(1))
   }
 
   // filterByMealType(mealType) — returns only the recipes whose mealType
   // array includes the given type (e.g. 'Breakfast', 'Dinner').
   filterByMealType(mealType) {
     // TODO 6
+    return this.#recipes.filter(recipe => recipe.mealType.includes(mealType))
   }
 }
 

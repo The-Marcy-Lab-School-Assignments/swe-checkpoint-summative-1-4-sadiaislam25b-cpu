@@ -27,6 +27,23 @@ calculateFinalPrice(50, true);
 ```
 
 **Your Answer:**
+The error happens because of scope. The variable finalPrice is declared with let inside the if and else blocks, so it only exists inside those blocks. When the function tries to return finalPrice, it is outside of its scope, so JavaScript throws a ReferenceError
+
+```js
+const calculateFinalPrice = (price, hasCoupon) => {
+  const taxMultiplier = 1.1;
+  let finalPrice;
+  if (hasCoupon) {
+     finalPrice = (price - 5) * taxMultiplier;  
+  } else {
+     finalPrice = price * taxMultiplier;
+  }
+  return finalPrice;
+}
+
+calculateFinalPrice(50, true);
+```
+
 
 
 ### Question 2: Encapsulation and Private Fields
@@ -35,6 +52,7 @@ Explain what **encapsulation** means in object-oriented programming. What does t
 
 **Your Answer:**
 
+Encapsulation means keeping an object's data and methods together while protecting its internal data from being accessed or changed directly. The # syntax creates a private field, which can only be accessed inside the class. This is useful because it protects the data and helps prevent accidental changes from outside the class.
 
 ### Question 3: Flexbox vs. CSS Grid
 
@@ -42,6 +60,7 @@ Explain the difference between **Flexbox** and **CSS Grid** and provide an examp
 
 **Your Answer:**
 
+Flexbox is used for arranging items in one direction either a row or a column, while CSS Grid is used for creating two-dimensional layouts with rows and columns. For example, Flexbox is good for a navigation bar, and CSS Grid is good for a webpage layout with a header, sidebar, main content, and footer.
 
 ---
 
@@ -65,6 +84,7 @@ console.log('4');
 ```
 
 **Your Answer:**
-
+The numbers will be logged in this order: 1, 2, 4, 3.
+1 is printed first because it is the first line of code. Then loadRecipe(1) runs and prints 2. When the code gets to await fetch(), it waits for the data to come back. While it is waiting, the program keeps running, so 4 is printed next. After the data is received, the function continues and prints 3 last.
 
 ---
